@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>lihu</title>
+</head>
+<body>
+    <div class="content"></div>
+    <div class="box"></div>
+    <script>
+        var obj = {
+            name: 'lihu',
+            age: 18,
+            son: {
+                name: 'hu',
+                son:{
+                    name: 'go',
+                    age: 13
+                }
+            },
+            weight: null,
+            card: ['visa','master']
+            
+        };
+        var obj1;
+        function deepClone(origin, target){
+            var target = target || {};
+            var ots = Object.prototype.toString
+            for(prop in origin){
+                if(typeof origin[prop] === "object"){
+                    if(ots.call(origin[prop]) === "[object Array]"){
+                        target[prop] = [];
+                    }else if(ots.call(origin[prop]) === "[object Object]"){
+                        target[prop] = {};
+                    }
+                    deepClone(origin[prop],target[prop])
+                }else{
+                    target[prop] = origin[prop]
+                }
+            }
+            return target;
+        }
+        obj1 = deepClone(obj);
+        var a = [1,1,2,3,4,5]
+        for(p in a){
+            console.log(a[p])
+        }
+        
+    </script>
+</body>
+</html>
